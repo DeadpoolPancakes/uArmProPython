@@ -99,7 +99,10 @@ class robot:
         self.pumping = state
         cmd = protocol.SET_PUMP.format(int(state))
         self.sendcmd(cmd,True)
-
+    def gripper(self, state):
+        self.gripping = state
+        cmd = protocol.SET_GRIPPER.format(int(state))
+        self.sendcmd(cmd,True)
     def mode(self, modeid):
         # 0= Normal
         # 1= Laser
