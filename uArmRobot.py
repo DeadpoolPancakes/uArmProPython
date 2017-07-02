@@ -90,6 +90,15 @@ class robot:
         cmd = protocol.SET_POSITION.format(x,y,z,s)
         self.sendcmd(cmd, True)
 
+    def gotorel(self,x,y,z,speed):
+        self.moving = True
+        x = str(round(x, 2))
+        y = str(round(y, 2))
+        z = str(round(z, 2))
+        s = str(round(speed, 2))
+        cmd = protocol.SET_POSITION_RELATIVE.format(x,y,z,s)
+        self.sendcmd(cmd, True)    
+
     def async_goto(self,x,y,z, speed):
         self.moving = True
         t = threading.Thread( target=self.goto , args=(x,y,z,speed) )
@@ -110,6 +119,15 @@ class robot:
         # 3= Universal holder
         cmd = protocol.SET_MODE.format(modeid)
         self.sendcmd(cmd,True)
+
+    def end(self):
+        self.moving = True
+        x = str(0)
+        y = str(0)
+        z = str(0)
+        s = str(6000)   
+        cmd = protocol.SET_POSITION.format(x,y,z,s)
+        self.sendcmd(cmd, True) 
 
     @staticmethod
     def PointsInCircum(r,n):
