@@ -16,11 +16,8 @@ myRobot.debug = True   # Enable / Disable debug output on screen, by default dis
 myRobot.mode(0)   # Set mode to Normal
 app = Flask(__name__)
 
-
 time.sleep(1)
 myRobot.goto(200,0,100,6000)
-
-
 
 @app.route('/')
 def home():
