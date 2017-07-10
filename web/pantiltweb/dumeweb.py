@@ -26,8 +26,23 @@ myRobot.goto(200,0,100,6000)
 def home():
     return render_template('gui.html')
 
+@app.route('/api/gripper/<boolean:on>')
+def gripper(on);
+    if on == true:
+        myRobot.gripper(True)
+    elif on == false:
+        myRobot.gripper(False)    
+
+
+@app.route('/api/pump/<boolean:on>')
+def pump(on);
+    if on == true:
+        myRobot.pump(True)
+    elif on == false:
+        myRobot.pump(False)    
+
 @app.route('/api/<direction>/<int:angle>')
-def api(direction, angle):
+def direction(direction, angle):
     if angle < 0 or angle > 180:
         return "{'error':'out of range'}"
 
